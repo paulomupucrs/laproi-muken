@@ -10,7 +10,7 @@ Descrição: Código em C para ver estatísticas de um arquivo (quantidade de li
 // Comente a linha abaixo caso não queira exibir os caracteres do arquivo!
 #define EXIBIR_CARACTERES
 
-int main(void) {
+int main(int argc, char *argv[]) {
 	FILE *arquivo;
 	char nome[64];
 	
