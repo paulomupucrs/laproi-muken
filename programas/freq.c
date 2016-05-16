@@ -1,34 +1,71 @@
-#include<stdio.h>
-#include<stdlib.h>
-#define SIZE 256
+/*
 
-int main(void)
-{
-    int total = 0;
-    int j;
-    int s[SIZE];
+Autor: Paulo Vianna Mu <paulo.mu@acad.pucrs.br> & Fernando Ken <fernando.ken@acad.pucrs.br>
+Descrição: Exibe o(s) caractere(s) mais frequente(s) do arquivo.
 
-    for( j = 0 ; j < SIZE ; j++) { /*j++ ou j = j + 1 ou j += 1*/
-        s[j] = 0;
-    }
-    //TODO: ler o arquivo
-    s['A']++;
-    s['B']++;
-    s['A']++;
-    //
-    for( j = 0 ; j < SIZE ; j++) { /*j++ ou j = j + 1 ou j += 1*/
-        total += s[j];
-    }
+*/
 
-    printf("%s%14s\n", "Elemento", "Valor");
+#include <stdio.h>
 
-    for( j = 0 ; j < SIZE ; j++) { /*j++ ou j = j + 1 ou j += 1*/
-        if (s[j] != 0)
-            printf("%8d%5c%5x%14d\n", j, j, j, s[j]); /*	USAR %5c OU %5x(HEXADECIMAL) */
-    }
+int main(void) {
+	FILE *arquivo;
+	char nome[64];
 
-    printf("%8s%14d\n", "Total", total);
+	printf("Digite o nome do arquivo: ");
+	scanf("%s", nome);
 
-    return EXIT_SUCCESS;
+	printf("Vamos ler o arquivo '%s'...\n", nome);
+
+	arquivo = fopen(nome, "r");
+
+	int maior = 0;
+	int empate[256] = {0};
+
+	if (arquivo != NULL) {
+		int contagemLetras[256] = {0};
+		char c;
+
+		while ((c = getc(arquivo)) != EOF)
+			contagemLetras[(int)c] ++;
+
+		int i;
+
+		for (i = 32; i < 127; i++) { // 
+			if (contagemLetras[i])
+				printf("%5d ['%c'] = %i ocorrência(s)\n", i,  i, contagemLetras[i]);
+
+			if (contagemLetras[i] > contagemLetras[maior])
+				maior = i;
+			
+			if (contagemLetras[i] == contagemLetras[maior])
+				empate[i] = 1;
+		}
+	} else {
+		printf("Falha ao abrir o arquivo!\n");
+		
+		return 1;
+	}
+
+	printf("\n");
+
+	int x;
+	int empatou = 0;
+
+	for (x = 0; x < 256; x++) {
+		if (empate[x]) {
+			empatou = 1;
+
+			if (x == 255)
+				printf("['%c']", x);			
+		}
+	}
+
+	if (empatou)
+		printf(" são os caracteres que mais apareceram no arquivo.\n");
+	else
+		printf("['%c'] é o caractere que mais aparece no arquivo.\n", maior);
+
+	fclose(arquivo);
+
+	return 0;
 }
-
