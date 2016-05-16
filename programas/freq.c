@@ -7,7 +7,7 @@ Descrição: Exibe o(s) caractere(s) mais frequente(s) do arquivo.
 
 #include <stdio.h>
 
-int main(void) {
+int main(int argc, char *argv[]) {
 	FILE *arquivo;
 	char nome[64];
 
