@@ -9,12 +9,11 @@ Descrição: Exibe o(s) caractere(s) mais frequente(s) do arquivo.
 
 int main(int argc, char* argv[]) {
 	if (argc != 2){
-	printf("A forma correta de usar o comando é freq.o [nome do arquivo](burro).\n");
-	return 1;
+		printf("A forma correta de usar o comando é freq.o [nome do arquivo](burro).\n");
+		return 1;
 	}
 	
 	FILE *arquivo;
-	
 
 	printf("Vamos ler o arquivo '%s'...\n", argv[1]);
 
