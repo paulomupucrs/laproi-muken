@@ -7,16 +7,18 @@ Descrição: Exibe o(s) caractere(s) mais frequente(s) do arquivo.
 
 #include <stdio.h>
 
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
+	if (argc != 2){
+	printf("A forma correta de usar o comando é freq.o [nome do arquivo](burro).\n");
+	return 1;
+	}
+	
 	FILE *arquivo;
-	char nome[64];
+	
 
-	printf("Digite o nome do arquivo: ");
-	scanf("%s", nome);
+	printf("Vamos ler o arquivo '%s'...\n", argv[1]);
 
-	printf("Vamos ler o arquivo '%s'...\n", nome);
-
-	arquivo = fopen(nome, "r");
+	arquivo = fopen(argv[1], "r");
 
 	int maior = 0;
 	int empate[256] = {0};
