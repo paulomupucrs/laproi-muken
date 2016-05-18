@@ -1,6 +1,6 @@
 /*
 
-Autor: Paulo Vianna Mu <paulo.mu@acad.pucrs.br>
+Autor: Paulo Vianna Mu <paulo.mu@acad.pucrs.br> & Fernando Ken <fernando.ken@acad.pucrs.br>
 Descrição: Código em C para ver estatísticas de um arquivo (quantidade de linhas, caracteres, bytes e palavras).
 
 */
