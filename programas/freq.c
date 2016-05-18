@@ -26,8 +26,16 @@ int main(int argc, char* argv[]) {
 		int contagemLetras[256] = {0};
 		char c;
 
-		while ((c = getc(arquivo)) != EOF)
-			contagemLetras[(int)c] ++;
+		while ((c = getc(arquivo)) != EOF) {
+			int index;
+
+			if (c >= 32 && c <= 90)
+				index = c + 32;
+			else
+				index = c;
+
+			contagemLetras[index] ++;
+		}
 
 		int i;
 
